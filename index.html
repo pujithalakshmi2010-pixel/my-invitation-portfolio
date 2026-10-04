@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Creative Invitations | Digital Invitation Designer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #07130f;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at top, rgba(197,157,70,0.20), transparent 35%),
+        linear-gradient(135deg, #07130f, #10271e, #06100c);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(218,181,88,0.25);
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.small-title {
+    color: #d8b45b;
+    letter-spacing: 5px;
+    font-size: 13px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(55px, 13vw, 110px);
+    color: #e3c36c;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 6vw, 55px);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #d4ddd8;
+    font-size: 16px;
+}
+
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #e5c36b, #b98b32);
+    color: #07130f;
+}
+
+.btn-outline {
+    border: 1px solid #d7b85f;
+    color: #e5c36b;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 80px 20px;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title span {
+    color: #d9b75c;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(27px, 5vw, 42px);
+    margin-top: 8px;
+}
+
+/* SERVICES */
+
+.services {
+    background: #091812;
+    max-width: none;
+}
+
+.service-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(218,181,88,0.18);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #d8b45b;
+}
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #e1c46e;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 8px;
+}
+
+/* WORK */
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+}
+
+.work-card {
+    min-height: 300px;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(218,181,88,0.2);
+
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.8), transparent),
+        radial-gradient(circle at center, #3d5c48, #10251b);
+}
+
+.work-card:nth-child(2) {
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.8), transparent),
+        radial-gradient(circle at center, #714a45, #241311);
+}
+
+.work-card:nth-child(3) {
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.8), transparent),
+        radial-gradient(circle at center, #62512e, #211b0b);
+}
+
+.work-info {
+    position: relative;
+    z-index: 2;
+}
+
+.work-info span {
+    color: #e0c16a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.work-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+}
+
+/* WHY */
+
+.why {
+    background: #0d2018;
+    max-width: none;
+}
+
+.why-content {
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 25px;
+    text-align: center;
+}
+
+.why-box {
+    padding: 25px;
+}
+
+.why-box strong {
+    display: block;
+    color: #e2c36b;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+    background:
+        radial-gradient(circle at center, rgba(210,173,77,0.15), transparent 50%),
+        #07130f;
+    max-width: none;
+}
+
+.contact h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    margin-bottom: 15px;
+}
+
+.contact p {
+    color: #cfd8d3;
+    max-width: 600px;
+    margin: 0 auto 25px;
+}
+
+.contact-details {
+    margin: 25px auto;
+    max-width: 500px;
+    padding: 25px;
+    border: 1px solid rgba(218,181,88,0.25);
+    border-radius: 18px;
+}
+
+.contact-details div {
+    margin: 10px 0;
+}
+
+.label {
+    color: #d9b75c;
+    font-weight: 600;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    background: #040b08;
+    color: #84928b;
+    font-size: 13px;
+}
+
+/* ANIMATION */
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media(max-width:600px) {
+
+    .hero {
+        min-height: 95vh;
+    }
+
+    section {
+        padding: 65px 18px;
+    }
+
+    .card {
+        padding: 25px 15px;
+    }
+
+    .work-card {
+        min-height: 260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<header class="hero">
+
+<div class="hero-content">
+
+<div class="small-title">
+CUSTOM DIGITAL INVITATIONS
+</div>
+
+<div class="logo">
+Creative
+</div>
+
+<h1>Beautiful Invitations For Every Special Moment</h1>
+
+<p>
+I create elegant, modern and customized digital invitations
+for weddings, birthdays, engagements, baby showers,
+housewarmings and all special functions.
+</p>
+
+<div class="buttons">
+
+<a href="#work" class="btn btn-gold">
+VIEW MY WORK
+</a>
+
+<a href="#contact" class="btn btn-outline">
+CONTACT ME
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- SERVICES -->
+
+<section class="services">
+
+<div class="section-title">
+
+<span>WHAT I CREATE</span>
+
+<h2>My Invitation Services</h2>
+
+</div>
+
+<div class="service-grid">
+
+<div class="card">
+<div class="icon">💍</div>
+<h3>Wedding</h3>
+<p>Beautiful digital marriage and wedding invitations.</p>
+</div>
+
+<div class="card">
+<div class="icon">🎂</div>
+<h3>Birthday</h3>
+<p>Creative birthday invitations for children and adults.</p>
+</div>
+
+<div class="card">
+<div class="icon">💐</div>
+<h3>Engagement</h3>
+<p>Elegant engagement and reception invitations.</p>
+</div>
+
+<div class="card">
+<div class="icon">👶</div>
+<h3>Baby Events</h3>
+<p>Baby shower, naming ceremony and other baby events.</p>
+</div>
+
+<div class="card">
+<div class="icon">🏠</div>
+<h3>Housewarming</h3>
+<p>Traditional and modern housewarming invitations.</p>
+</div>
+
+<div class="card">
+<div class="icon">✨</div>
+<h3>All Functions</h3>
+<p>Customized invitations for any special occasion.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MY WORK -->
+
+<section id="work">
+
+<div class="section-title">
+
+<span>PORTFOLIO</span>
+
+<h2>Sample Designs</h2>
+
+</div>
+
+<div class="work-grid">
+
+<div class="work-card">
+
+<div class="work-info">
+
+<span>WEDDING INVITATION</span>
+
+<h3>Arjun & Lavanya</h3>
+
+<p>
+Traditional • Elegant • Cinematic
+</p>
+
+</div>
+
+</div>
+
+
+<div class="work-card">
+
+<div class="work-info">
+
+<span>BIRTHDAY INVITATION</span>
+
+<h3>Birthday Celebration</h3>
+
+<p>
+Fun • Colorful • Customized
+</p>
+
+</div>
+
+</div>
+
+
+<div class="work-card">
+
+<div class="work-info">
+
+<span>SPECIAL OCCASION</span>
+
+<h3>Your Event</h3>
+
+<p>
+Designed specially for you
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WHY ME -->
+
+<section class="why">
+
+<div class="section-title">
+
+<span>WHY CHOOSE ME</span>
+
+<h2>Made For Your Special Day</h2>
+
+</div>
+
+<div class="why-content">
+
+<div class="why-box">
+<div class="icon">✨</div>
+<strong>Custom Designs</strong>
+<p>Every invitation can be customized according to your event.</p>
+</div>
+
+<div class="why-box">
+<div class="icon">🎨</div>
+<strong>Creative Style</strong>
+<p>Modern, traditional and elegant invitation designs.</p>
+</div>
+
+<div class="why-box">
+<div class="icon">📱</div>
+<strong>Digital Format</strong>
+<p>Perfect for sharing through WhatsApp and social media.</p>
+</div>
+
+<div class="why-box">
+<div class="icon">💫</div>
+<strong>Special Touch</strong>
+<p>Your names, photos, details and theme can be included.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2>Let's Create Your Invitation</h2>
+
+<p>
+Want an invitation like these?
+Contact me and tell me about your special occasion.
+</p>
+
+<div class="contact-details">
+
+<div>
+<span class="label">WhatsApp:</span>
+YOUR NUMBER
+</div>
+
+<div>
+<span class="label">Instagram:</span>
+@YOUR_USERNAME
+</div>
+
+<div>
+<span class="label">Email:</span>
+YOUR EMAIL
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="https://wa.me/91XXXXXXXXXX" class="btn btn-gold">
+💬 CONTACT ON WHATSAPP
+</a>
+
+<a href="#top" class="btn btn-outline">
+BACK TO TOP
+</a>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Creative Invitations • Customized Digital Invitations
+
+</footer>
+
+</body>
+  </html>
