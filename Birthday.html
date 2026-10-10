@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Birthday Surprise 💗</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #78234f;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+  animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* SCREEN 1: PUMPING HEART */
+
+#screen1 {
+  background: radial-gradient(white, #ffe1ef, #ffc0dc);
+  flex-direction: column;
+  gap: 24px;
+}
+
+.small-text {
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.heart-button {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.heart {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  top: 42px;
+  left: 38px;
+  background: linear-gradient(135deg, #ff9dca, #fa1682, #c90059);
+  transform: rotate(-45deg);
+  animation: heartbeat 1s infinite;
+  filter: drop-shadow(0 8px 12px #e8328755);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::before { top: -42px; left: 0; }
+.heart::after { left: 42px; top: 0; }
+
+@keyframes heartbeat {
+  0%, 100% { scale: 1; }
+  15% { scale: 1.18; }
+  30% { scale: 1; }
+  45% { scale: 1.12; }
+  60% { scale: 1; }
+}
+
+.arrow {
+  font-family: Arial, sans-serif;
+  font-size: 38px;
+  display: inline-block;
+  transform: rotate(-25deg);
+}
+
+.open-button {
+  border: 1px solid #f29bc4;
+  background: white;
+  color: #c21868;
+  padding: 13px 23px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* SCREEN 2: PINK BIRTHDAY MESSAGE */
+
+#screen2 {
+  color: white;
+  background: radial-gradient(ellipse at top left,
+    #ff9dce, #fa2488 55%, #b90059);
+}
+
+#screen2::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #ffffff88;
+  pointer-events: none;
+}
+
+.birthday-title {
+  font-size: clamp(48px, 12vw, 88px);
+  line-height: 1;
+  margin: 22px 0;
+}
+
+.name-gold {
+  font-size: clamp(38px, 9vw, 65px);
+  color: #ffe59b;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+/* SCREEN 3: BALLOONS AND PHOTO */
+
+#screen3 {
+  background: linear-gradient(145deg, #fff4fa, #ffd5e9);
+}
+
+.final-content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  position: relative;
+  z-index: 3;
+}
+
+.message {
+  flex: 1;
+  text-align: left;
+  min-width: 0;
+}
+
+.message h2 {
+  color: #d61978;
+  font-size: clamp(30px, 6vw, 54px);
+  margin: 10px 0;
+}
+
+.message p {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.photo-frame {
+  width: min(42%, 250px);
+  aspect-ratio: 3 / 4;
+  padding: 8px;
+  background: white;
+  border-radius: 130px 130px 18px 18px;
+  box-shadow: 0 10px 30px #b32a6733;
+  flex-shrink: 0;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.photo-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: inherit;
+  background: #ffe0ee;
+  font: 14px Arial, sans-serif;
+}
+
+/* GROWING STEM */
+
+.stem {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  height: 0;
+  width: 5px;
+  background: linear-gradient(#83d77c, #328d53);
+  border-radius: 8px;
+  z-index: 1;
+  transform: rotate(5deg);
+  transform-origin: bottom;
+  animation: grow 1.5s forwards;
+}
+
+@keyframes grow {
+  to { height: 110vh; }
+}
+
+.leaf {
+  position: absolute;
+  width: 38px;
+  height: 20px;
+  background: #65c979;
+  border-radius: 100% 0 100% 0;
+  opacity: 0;
+  animation: showLeaf 0.6s 1s forwards;
+}
+
+.leaf.one { bottom: 30%; left: -34px; }
+.leaf.two {
+  bottom: 48%;
+  left: 0;
+  transform: scaleX(-1);
+  animation-delay: 1.4s;
+}
+
+@keyframes showLeaf {
+  to { opacity: 1; }
+}
+
+/* HEART-SHAPED BALLOONS */
+
+#balloons {
+  position: absolute;
+  width: min(330px, 72vw);
+  height: 260px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  width: 29px;
+  height: 38px;
+  border-radius: 50%;
+  box-shadow: inset -5px -5px 8px #0001,
+              inset 5px 5px 8px #ffffff66;
+  opacity: 0;
+  animation: floatUp 0.6s ease forwards;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 7px solid #e95b99;
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 38px;
+  height: 25px;
+  border-left: 1px solid #ba829f;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; translate: 0 35px; scale: 0.5; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+
+.restart {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: none;
+  background: white;
+  color: #b21e65;
+  border: 1px solid pink;
+  border-radius: 20px;
+  padding: 9px 14px;
+}
+
+.restart.show { display: block; }
+
+@media (max-width: 600px) {
+  .final-content {
+    flex-direction: column-reverse;
+    gap: 12px;
+    padding-top: 55px;
+  }
+
+  .photo-frame { width: 125px; }
+
+  .message {
+    text-align: center;
+    max-width: 370px;
+  }
+
+  .message p { font-size: 14px; }
+
+  #balloons {
+    top: 5%;
+    opacity: 0.9;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+  <div class="small-text">
+    A little surprise for <span class="person-name">Arya</span>
+  </div>
+
+  <button class="heart-button" onclick="shootArrow()"
+          aria-label="Open the birthday surprise">
+    <span class="heart"></span>
+  </button>
+
+  <div class="arrow" id="arrow">➶</div>
+
+  <div>Tap the heart for a surprise ♡</div>
+
+  <button class="open-button" onclick="shootArrow()">
+    Open your surprise 💗
+  </button>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+  <div>
+    <div style="font-style:italic; letter-spacing:3px">
+      MAKE A WISH...
+    </div>
+
+    <h1 class="birthday-title">
+      Happy<br>Birthday
+    </h1>
+
+    <div class="name-gold person-name">Arya</div>
+
+    <p>TO SOMEONE WORTH CELEBRATING ✨</p>
+
+    <button class="open-button"
+            onclick="showScreen(3)"
+            style="margin-top:25px">
+      Open your special message →
+    </button>
+  </div>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+
+  <div class="stem">
+    <span class="leaf one"></span>
+    <span class="leaf two"></span>
+  </div>
+
+  <div id="balloons"></div>
+
+  <div class="final-content">
+
+    <div class="message">
+      <div style="font-style:italic">Today is all about you ✨</div>
+
+      <h2>
+        Happy Birthday,<br>
+        <span class="person-name">Arya</span>!
+      </h2>
+
+      <p>
+        Wishing you a day full of love, laughter,
+        beautiful surprises and dreams that come true.
+      </p>
+
+      <p>
+        <strong>
+          Lots of love, my dear! Keep smiling
+          and shining always. ♡
+        </strong>
+      </p>
+    </div>
+
+    <div class="photo-frame" id="photoFrame">
+      <div class="photo-placeholder">
+        Your favourite photo goes here 💗
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<button class="restart" id="restart"
+        onclick="showScreen(1)">
+  ↻ Start again
+</button>
+
+<script>
+/* ===== CHANGE THESE TWO SETTINGS ===== */
+
+const birthdayName = "Arya";
+
+/* Paste a direct photo URL between the quotes.
+   Leave empty until you have a photo URL. */
+const photoURL = "";
+
+/* ===== BIRTHDAY WEBSITE LOGIC ===== */
+
+document.querySelectorAll(".person-name").forEach(element => {
+  element.textContent = birthdayName;
+});
+
+let currentScreen = 1;
+
+function showScreen(number) {
+  currentScreen = number;
+
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById("screen" + number)
+          .classList.add("active");
+
+  document.getElementById("restart")
+          .classList.toggle("show", number !== 1);
+
+  if (number === 3) {
+    createBalloons();
+  }
+}
+
+function shootArrow() {
+  if (currentScreen !== 1) return;
+
+  const arrow = document.getElementById("arrow");
+
+  arrow.animate([
+    { transform: "translate(0,0) rotate(-25deg)", opacity: 1 },
+    { transform: "translate(100px,-100px) rotate(15deg)", opacity: 1 },
+    { transform: "translate(110px,-105px) scale(.2)", opacity: 0 }
+  ], {
+    duration: 650,
+    easing: "ease-in"
+  }).onfinish = () => showScreen(2);
+}
+
+function createBalloons() {
+  const container = document.getElementById("balloons");
+  container.innerHTML = "";
+
+  /* Heart outline */
+  const points = [];
+
+  for (let i = 0; i < 24; i++) {
+    const t = (2 * Math.PI * i) / 24;
+
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = 13 * Math.cos(t)
+            - 5 * Math.cos(2 * t)
+            - 2 * Math.cos(3 * t)
+            - Math.cos(4 * t);
+
+    points.push({
+      x: 50 + x * 2,
+      y: 49 - y * 1.8
+    });
+  }
+
+  /* Balloons inside the heart */
+  const inside = [
+    [50,35], [43,38], [57,38],
+    [35,45], [45,47], [55,47], [65,45],
+    [40,55], [50,56], [60,55],
+    [47,64], [53,64]
+  ];
+
+  const colors = [
+    "#ff438e", "#ff8abb", "#ffc0dc",
+    "#f21b7b", "#ff69a9", "#ffacd0"
+  ];
+
+  [...points, ...inside].forEach((point, index) => {
+    const balloon = document.createElement("span");
+
+    balloon.className = "balloon";
+    balloon.style.left = point.x + "%";
+    balloon.style.top = point.y + "%";
+    balloon.style.background = colors[index % colors.length];
+    balloon.style.animationDelay = (index * 0.07) + "s";
+
+    container.appendChild(balloon);
+  });
+}
+
+/* Load the birthday person's photo if a URL is provided */
+if (photoURL.trim() !== "") {
+  const img = document.createElement("img");
+
+  img.src = photoURL;
+  img.alt = "Birthday person";
+
+  img.onerror = () => {
+    document.getElementById("photoFrame").innerHTML =
+      '<div class="photo-placeholder">Please check the photo URL 💗</div>';
+  };
+
+  document.getElementById("photoFrame").replaceChildren(img);
+}
+</script>
+
+</body>
+</html>
