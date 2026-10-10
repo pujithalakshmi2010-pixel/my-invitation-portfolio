@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  height: 100dvh;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.screen.active {
+  display: flex;
+}
+
+#screen1 {
+  background: linear-gradient(145deg, #ffe3f0, #f7b8d6, #fff0f7);
+}
+
+.instruction {
+  color: #8c2858;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.target {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-balloon {
+  width: 145px;
+  height: 145px;
+  filter: drop-shadow(0 10px 12px #c64a7b55);
+  animation: heartbeat 1s infinite;
+  transform-origin: center;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.10); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.07); }
+}
+
+.balloon-string {
+  position: absolute;
+  top: 145px;
+  left: 90px;
+  height: 48px;
+  border-left: 2px solid #c45b8b;
+}
+
+.arrow {
+  position: absolute;
+  width: 145px;
+  height: 42px;
+  left: calc(50% - 205px);
+  top: calc(50% - 21px);
+  z-index: 5;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  transform: rotate(0deg);
+}
+
+.arrow svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.arrow:focus-visible {
+  outline: 3px solid #a52a62;
+  border-radius: 8px;
+}
+
+.arrow.fly {
+  animation: arrowHit 0.65s ease-in forwards;
+}
+
+@keyframes arrowHit {
+  from { transform: translateX(0); }
+  to { transform: translateX(190px); }
+}
+
+.pop {
+  animation: balloonPop 0.35s ease-out forwards !important;
+}
+
+@keyframes balloonPop {
+  0% { transform: scale(1); opacity: 1; }
+  45% { transform: scale(1.35); opacity: 0.9; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.spark {
+  position: absolute;
+  font-size: 28px;
+  animation: sparkle 0.65s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  from { opacity: 1; transform: scale(.3); }
+  to { opacity: 0; transform: scale(1.8) translateY(-25px); }
+}
+
+.action-button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 25px;
+  margin-top: 35px;
+  background: #e74c91;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #b83a7550;
+}
+
+.action-button:active {
+  transform: scale(.97);
+}
+
+#screen2 {
+  color: #a51d60;
+  background:
+    radial-gradient(circle at 15% 20%, #fff 0 3px, transparent 4px),
+    radial-gradient(circle at 85% 30%, #fff 0 4px, transparent 5px),
+    linear-gradient(140deg, #ffd9ec, #ffacd3, #ffeaf4);
+}
+
+#screen2 h1 {
+  font-size: clamp(38px, 10vw, 65px);
+  margin: 0 0 15px;
+  text-shadow: 2px 3px 0 white;
+}
+
+#screen2 p {
+  font-size: 21px;
+  line-height: 1.6;
+}
+
+.gift {
+  font-size: 75px;
+  margin-bottom: 20px;
+  animation: heartbeat 1.3s infinite;
+}
+
+#screen3 {
+  justify-content: flex-start;
+  padding-top: 22px;
+  background: linear-gradient(#fff0f6, #ffd5e8, #fff8fc);
+  color: #8d285c;
+}
+
+#screen3 h1 {
+  font-size: clamp(27px, 7vw, 42px);
+  margin: 8px 0;
+}
+
+#screen3 .subtitle {
+  margin: 4px 0 10px;
+  font-size: 17px;
+}
+
+.garden {
+  width: 100%;
+  max-width: 350px;
+  height: 190px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.stem {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(#6bbf63, #238c50);
+  border-radius: 8px;
+  transform: translateX(-50%);
+}
+
+#screen3.active .stem {
+  animation: growStem 1.5s ease-out forwards;
+}
+
+@keyframes growStem {
+  to { height: 145px; }
+}
+
+.leaf {
+  position: absolute;
+  bottom: 48px;
+  left: calc(50% - 5px);
+  width: 48px;
+  height: 24px;
+  background: #6ecb73;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(-22deg) scale(0);
+  transform-origin: left center;
+}
+
+#screen3.active .leaf {
+  animation: growLeaf .5s 1s forwards;
+}
+
+@keyframes growLeaf {
+  to { transform: rotate(-22deg) scale(1); }
+}
+
+.balloons {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mini-heart {
+  font-size: 45px;
+  color: #ee589c;
+  filter: drop-shadow(0 3px 3px #b32c6b35);
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.mini-heart:nth-child(2) {
+  color: #ff7aa8;
+  animation-delay: .5s;
+}
+
+.mini-heart:nth-child(3) {
+  color: #c46be6;
+  animation-delay: .8s;
+}
+
+@keyframes float {
+  from { transform: translateY(8px) rotate(-8deg); }
+  to { transform: translateY(-8px) rotate(8deg); }
+}
+
+.photo-frame {
+  width: 185px;
+  height: 185px;
+  border: 6px solid white;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #ffe2ef;
+  box-shadow: 0 7px 22px #b83a7540;
+  margin: 2px 0 12px;
+  flex-shrink: 0;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.message {
+  max-width: 340px;
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.footer {
+  font-size: 13px;
+  opacity: .8;
+  margin-top: 12px;
+}
+
+@media (max-height: 650px) {
+  #screen3 { padding-top: 8px; }
+  .garden { height: 140px; }
+  #screen3.active .stem { animation-name: growStemShort; }
+  @keyframes growStemShort { to { height: 100px; } }
+  .photo-frame { width: 140px; height: 140px; }
+  .action-button { margin-top: 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1: ARROW AND HEART BALLOON -->
+<section class="screen active" id="screen1">
+  <p class="instruction">💗 A little birthday surprise!<br>Tap the arrow to pop the heart.</p>
+
+  <div class="target" id="target">
+    <svg class="heart-balloon" id="balloon" viewBox="0 0 160 160"
+         aria-label="Pink heart balloon">
+      <defs>
+        <radialGradient id="pink" cx="30%" cy="25%" r="80%">
+          <stop offset="0%" stop-color="#ffb6d8"/>
+          <stop offset="100%" stop-color="#e72f86"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 139 C66 125 13 91 13 48 C13 7 61 0 80 35 C99 0 147 7 147 48 C147 91 94 125 80 139Z"
+            fill="url(#pink)" stroke="#d72778" stroke-width="2"/>
+      <ellipse cx="48" cy="32" rx="10" ry="17"
+               fill="#fff" opacity=".4" transform="rotate(-35 48 32)"/>
+      <path d="M74 140 L80 150 L86 140" fill="#e72f86"/>
+    </svg>
+    <div class="balloon-string"></div>
+  </div>
+
+  <button class="arrow" id="arrow" aria-label="Shoot arrow at heart balloon">
+    <svg viewBox="0 0 150 42">
+      <path d="M5 21 L135 21" stroke="#63304c" stroke-width="5"
+            stroke-linecap="round"/>
+      <path d="M112 5 L140 21 L112 37 L119 21 Z"
+            fill="#63304c"/>
+      <path d="M8 21 L0 7 L23 21 L0 35 Z" fill="#e85b9d"/>
+      <path d="M28 21 L17 8" stroke="#f4b4d3" stroke-width="2"/>
+    </svg>
+  </button>
+
+  <p style="position:absolute;bottom:16px;color:#8c2858;font-size:13px">
+    Made with love 💕
+  </p>
+</section>
+
+<!-- SCREEN 2: BIRTHDAY GREETING -->
+<section class="screen" id="screen2">
+  <div class="gift">🎁</div>
+  <h1>Happy Birthday!</h1>
+  <p>A special day for a very special person. 💖</p>
+  <p style="font-size:42px;margin:8px">🎂 🎉 🎈</p>
+  <button class="action-button" id="openSurprise">
+    Open Your Surprise 💝
+  </button>
+</section>
+
+<!-- SCREEN 3: PHOTO, GROWING STEM AND HEART BALLOONS -->
+<section class="screen" id="screen3">
+  <h1>🎂 Happy Birthday! 🎂</h1>
+  <p class="subtitle">Wishing you a day full of happiness!</p>
+
+  <div class="garden">
+    <div class="balloons">
+      <span class="mini-heart">♥</span>
+      <span class="mini-heart">♥</span>
+      <span class="mini-heart">♥</span>
+    </div>
+    <div class="stem"></div>
+    <div class="leaf"></div>
+  </div>
+
+  <div class="photo-frame">
+    <!-- Upload birthday-photo.jpg to the same GitHub folder -->
+    <img src="birthday-photo.jpg"
+         alt="Birthday person's photo"
+         onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:30px 8px;font-size:15px&quot;>Upload your photo as<br><b>birthday-photo.jpg</b><br>to show it here 📸</div>';">
+  </div>
+
+  <p class="message">
+    May your life bloom with love, laughter, beautiful memories,
+    and countless reasons to smile. Keep shining! 🌸💗
+  </p>
+
+  <p class="footer">A little surprise, made just for you ✨</p>
+
+  <button class="action-button" onclick="location.reload()">
+    Replay Surprise ↻
+  </button>
+</section>
+
+<script>
+const screen1 = document.getElementById("screen1");
+const screen2 = document.getElementById("screen2");
+const screen3 = document.getElementById("screen3");
+const arrow = document.getElementById("arrow");
+const balloon = document.getElementById("balloon");
+const target = document.getElementById("target");
+
+let hasPopped = false;
+
+function showScreen(screen) {
+  document.querySelectorAll(".screen").forEach(function(item) {
+    item.classList.remove("active");
+  });
+  screen.classList.add("active");
+}
+
+arrow.addEventListener("click", function() {
+  if (hasPopped) return;
+  hasPopped = true;
+  arrow.classList.add("fly");
+
+  setTimeout(function() {
+    balloon.classList.add("pop");
+
+    // A little sparkle burst at the balloon's centre
+    const rect = target.getBoundingClientRect();
+    const symbols = ["✨", "💥", "⭐", "✦", "💕"];
+
+    for (let i = 0; i < 9; i++) {
+      const spark = document.createElement("span");
+      spark.className = "spark";
+      spark.textContent = symbols[i % symbols.length];
+      spark.style.left = (rect.left + rect.width / 2 +
+        (Math.random() * 100 - 50)) + "px";
+      spark.style.top = (rect.top + rect.height / 2 +
+        (Math.random() * 100 - 50)) + "px";
+      spark.style.position = "fixed";
+      spark.style.zIndex = "10";
+      document.body.appendChild(spark);
+      setTimeout(function() { spark.remove(); }, 750);
+    }
+  }, 520);
+
+  setTimeout(function() {
+    showScreen(screen2);
+  }, 1050);
+});
+
+document.getElementById("openSurprise").addEventListener("click", function() {
+  showScreen(screen3);
+});
+</script>
+
+</body>
+</html>
