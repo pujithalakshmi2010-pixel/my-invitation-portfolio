@@ -6,254 +6,254 @@
 
 <title>Do You Love Me? 💗</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-
 <style>
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, #ffe1ed, #fff0f5, #ffd6e7);
-    color: #9e315e;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f5, #ffc2d9);
+    color: #d63384;
+    text-align: center;
 }
 
 .screen {
     min-height: 100vh;
     width: 100%;
+    padding: 30px 15px;
     display: none;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 25px 16px;
-    text-align: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
-#screen1 {
+#first {
     display: flex;
 }
 
 h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: clamp(28px, 7vw, 42px);
-    color: #d63384;
-    margin-bottom: 22px;
-    animation: heartbeat 1.5s infinite;
+    font-size: 32px;
+    margin: 10px 0 25px;
 }
-
-.subtitle {
-    font-size: 15px;
-    margin-top: 15px;
-    color: #a84a70;
-}
-
-/* CUTE PENGUIN */
 
 .penguin {
-    position: relative;
-    width: 155px;
-    height: 175px;
-    margin: 12px auto 24px;
-    animation: float 2s ease-in-out infinite;
-}
-
-.penguin-body {
-    width: 125px;
-    height: 150px;
-    background: #292b43;
-    border-radius: 48% 48% 43% 43%;
-    position: absolute;
-    left: 15px;
-    bottom: 0;
-    box-shadow: 0 12px 22px #c77d9c55;
-}
-
-.penguin-face {
-    width: 90px;
-    height: 90px;
-    background: #fff9f4;
-    border-radius: 50%;
-    position: absolute;
-    top: 24px;
-    left: 17px;
-}
-
-.eye {
-    position: absolute;
-    top: 32px;
-    width: 9px;
-    height: 12px;
-    background: #25253a;
-    border-radius: 50%;
-}
-
-.eye.left {
-    left: 24px;
-}
-
-.eye.right {
-    right: 24px;
-}
-
-.blush {
-    position: absolute;
-    top: 48px;
-    width: 16px;
-    height: 9px;
-    background: #ffabc8;
-    border-radius: 50%;
-}
-
-.blush.left {
-    left: 10px;
-}
-
-.blush.right {
-    right: 10px;
-}
-
-.beak {
-    position: absolute;
-    top: 46px;
-    left: 39px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 11px solid #ffb347;
-}
-
-.wing {
-    position: absolute;
-    width: 34px;
-    height: 72px;
-    background: #292b43;
-    border-radius: 50%;
-    top: 57px;
-}
-
-.wing.left {
-    left: 0;
-    transform: rotate(25deg);
-}
-
-.wing.right {
-    right: 0;
-    transform: rotate(-25deg);
+    font-size: 110px;
+    animation: bounce 1.5s infinite;
 }
 
 .heart {
-    position: absolute;
     font-size: 38px;
-    top: 95px;
-    left: 57px;
-    z-index: 5;
-    animation: heartbeat 1s infinite;
+    margin-top: -20px;
+    animation: beat 1s infinite;
 }
 
-.foot {
-    position: absolute;
-    bottom: -3px;
-    width: 35px;
-    height: 16px;
-    background: #ffb347;
-    border-radius: 50%;
+p {
+    font-size: 17px;
+    line-height: 1.7;
 }
-
-.foot.left {
-    left: 30px;
-}
-
-.foot.right {
-    right: 30px;
-}
-
-/* BUTTONS */
 
 .buttons {
     display: flex;
-    gap: 18px;
+    gap: 20px;
     justify-content: center;
-    align-items: center;
-    margin-top: 12px;
-    min-height: 55px;
+    margin-top: 20px;
 }
 
 button {
     border: none;
-    padding: 13px 29px;
     border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 14px 30px;
+    font-size: 17px;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 6px 15px #c85c8d33;
-    transition: transform 0.2s;
 }
 
-button:active {
-    transform: scale(0.94);
-}
-
-#yesBtn {
+#yes {
+    background: #ff3f8e;
     color: white;
-    background: linear-gradient(135deg, #ff4f96, #e72f77);
 }
 
-#noBtn {
-    color: #c93d75;
+#no {
     background: white;
-}
-
-#tryAgain {
-    min-height: 28px;
-    margin-top: 18px;
     color: #d63384;
-    font-size: 14px;
-    font-weight: 500;
+    border: 2px solid #ff8fba;
 }
 
-/* SECOND SCREEN */
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+    min-height: 25px;
+}
 
-#screen2 {
-    background:
-        radial-gradient(circle at top left, #fff8e8, transparent 40%),
-        linear-gradient(140deg, #ffe1ed, #fff3e8, #ffd3e2);
+#second {
+    background: linear-gradient(145deg, #ffe0eb, #fff6e9, #ffc9dd);
 }
 
 .love-title {
-    font-family: 'Pacifico', cursive;
-    font-size: clamp(29px, 7vw, 43px);
-    color: #d63384;
+    font-size: 34px;
     line-height: 1.5;
-    margin-bottom: 12px;
-    animation: fadeIn 1.2s ease;
 }
 
-.love-message {
-    font-size: 15px;
-    line-height: 1.9;
-    max-width: 340px;
-    color: #97466b;
-    margin: 0 auto 22px;
-    animation: fadeIn 1.7s ease;
+.love-text {
+    max-width: 350px;
+    margin-bottom: 25px;
 }
 
-/* PHOTO FRAME */
-
-.photo-container {
+.photo-frame {
     width: min(88vw, 340px);
     padding: 10px;
-    background: rgba(255,255,255,0.8);
-    border: 3px solid #fff;
-    border-radius: 24px;
-    box-shadow:
-        0 12px 35px #c94c8140,
-        0 0 0 5px #
+    background: white;
+    border: 4px solid #ffb6d0;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px #d6338450;
+}
+
+.photo-frame img {
+    display: block;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.caption {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.flower {
+    position: absolute;
+    font-size: 28px;
+    animation: float 4s infinite ease-in-out;
+}
+
+.f1 {
+    top: 20px;
+    left: 15px;
+}
+
+.f2 {
+    top: 50px;
+    right: 15px;
+}
+
+.f3 {
+    bottom: 20px;
+    left: 15px;
+}
+
+.f4 {
+    bottom: 20px;
+    right: 15px;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+
+<section class="screen" id="first">
+
+    <h1>Do you love me? 💗</h1>
+
+    <div class="penguin">🐧</div>
+
+    <div class="heart">💖</div>
+
+    <p>
+        Please tell me the truth! 🥺<br>
+        I am waiting for your answer...
+    </p>
+
+    <div class="buttons">
+
+        <button id="yes" onclick="showLove()">
+            YES 💗
+        </button>
+
+        <button id="no" onclick="tryAgain()">
+            NO 🙈
+        </button>
+
+    </div>
+
+    <p id="message"></p>
+
+</section>
+
+
+<!-- SECOND SCREEN -->
+
+<section class="screen" id="second">
+
+    <span class="flower f1">🌸</span>
+    <span class="flower f2">🌷</span>
+    <span class="flower f3">🌹</span>
+    <span class="flower f4">🌼</span>
+
+    <h1 class="love-title">
+        Awww! 💕<br>
+        You won my heart!
+    </h1>
+
+    <p class="love-text">
+        You make my little world more beautiful. 🥹💗<br>
+        Every moment is special, and this little surprise
+        is just for you! 🌷
+    </p>
+
+    <div class="photo-frame">
+
+        <!-- YOUR PHOTO WILL APPEAR HERE -->
+
+        <img src="couple.jpg" alt="Our beautiful photo">
+
+    </div>
+
+    <div class="caption">
+        Me + You = Forever 💞
+    </div>
+
+    <p>
+        🌸 You are my favorite person! 🌸
+    </p>
+
+</section>
+
+
+<script>
+function tryAgain() {
+    document.getElementById("message").textContent =
+        "Oops! 🥺 Try again! 💗";
+}
+
+function showLove() {
+    document.getElementById("first").style.display = "none";
+    document.getElementById("second").style.display = "flex";
+    window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+    </html>
